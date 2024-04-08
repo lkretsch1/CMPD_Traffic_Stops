@@ -3,7 +3,10 @@ import streamlit as st
 import pandas as pd 
 
 st.header("CMPD Traffic Stops")
+@st.cache_data
+def load_data(csv): 
+    df = pd.read_csv(csv)
+    return df
 
-stops = pd.read_csv("data/Officer_Traffic_Stops.csv")
-
+stops = load_data("data/Officer_Traffic_Stops.csv")
 st.dataframe(stops)
